@@ -4,8 +4,8 @@
 
 void controlCreateTask() {
     printf("Creating Task...\n\n");
-
-    
+    char* input = getInput("Enter Task Desc: ");
+    freeInput(input);
 }
 
 void controlDeleteTask() {

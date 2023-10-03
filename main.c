@@ -17,7 +17,7 @@ int main() {
     printf("\nCommands:\n  create - create a new task\n  list - list all tasks\n  delete - delete a task\n  quit - save tasks and exit\n");
     
     do {
-        input = getInput("Enter Command: ");
+        input = getInput("\nEnter Command: ");
         controlFlow(input);
 
     } while (strcmp(input, "quit") != 0);
