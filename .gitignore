@@ -1,0 +1,30 @@
+# Compiled object files
+*.o
+*.ko
+*.so
+*.a
+*.exe
+
+# Executables
+out
+bin/
+
+# Dependency files
+.depend
+
+# Debugging files
+debug.log
+
+# Editor or IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore all files in the build/ directory
+build/
