@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -g
-SRC = main.c task_manager.c fileio.c
+SRC = main.c taskmanager.c utils.c flowcontroller.c fileio.c
 OBJ = $(SRC:.c=.o)
 EXECUTABLE = main.exe
 
@@ -11,4 +11,4 @@ $(EXECUTABLE): $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(EXECUTABLE)
+	rm -f $(OBJ)

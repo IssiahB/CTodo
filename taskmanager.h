@@ -1,5 +1,5 @@
-#ifndef TASK_MANAGER_H
-#define TASK_MANAGER_H
+#ifndef TASKMANAGER_H
+#define TASKMANAGER_H
 
 #define INITIAL_CAPACITY 5
 

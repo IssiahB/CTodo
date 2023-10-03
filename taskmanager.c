@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "task_manager.h"
+#include "taskmanager.h"
 
 TaskManager* initializeManager() {
     TaskManager* manager = (TaskManager*) malloc(sizeof(TaskManager));
