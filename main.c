@@ -12,7 +12,7 @@
 void controlFlow(char* command);
 
 int main() {
-    TaskManager* manager = initializeManager();
+    initializeManager();
     char* input;
     printf("\nCommands:\n  create - create a new task\n  list - list all tasks\n  delete - delete a task\n  quit - save tasks and exit\n");
     
@@ -24,7 +24,7 @@ int main() {
 
     printf("Exiting Program...");
 
-    freeTaskManager(manager);
+    freeTaskManager();
     freeInput(input);
 
     return 0;

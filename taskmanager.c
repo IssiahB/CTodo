@@ -3,55 +3,98 @@
 #include <string.h>
 #include "taskmanager.h"
 
-TaskManager* initializeManager() {
-    TaskManager* manager = (TaskManager*) malloc(sizeof(TaskManager));
-    manager->tasks = (char**) malloc(INITIAL_CAPACITY * sizeof(char*));
-    manager->size = 0;
-    manager->capacity = INITIAL_CAPACITY;
-    return manager;
-}
+TaskManager* gProgramTasks; 
 
-void addTask(TaskManager* manager, const char* str) {
-    if (manager->size >= manager->capacity) {
-        // Double capacity
-        manager->capacity *= 2;
-        manager->tasks = (char**) realloc(manager->tasks, manager->capacity * sizeof(char*));
-    }
+/**
+ * @returns 1 if global TaskManager is initilized else returns 0
+*/
+static int isManagerInitialized();
 
-    // Allocate memory for the new string and copy it
-    manager->tasks[manager->size] = (char*) malloc((strlen(str) + 1) * sizeof(char));
-    strcpy(manager->tasks[manager->size], str);
-    manager->size++;
-}
-
-void deleteTask(TaskManager* manager, int index) {
-    if (index < 0 || index >= manager->size) {
-        printf("Invalid index\n");
+void initializeManager() {
+    gProgramTasks = (TaskManager*) malloc(sizeof(TaskManager));
+    if (gProgramTasks == NULL) {
+        fprintf(stderr, "Uable to allocate memory for TaskManager\n");
         return;
     }
 
-    free(manager->tasks[index]);
-    // Move the elements after deleted string one position forward
-    for (int i = index; i < manager->size - 1; i++) {
-        manager->tasks[i] = manager->tasks[i + 1];
+    gProgramTasks->tasks = (char**) malloc(INITIAL_CAPACITY * sizeof(char*));
+    if (gProgramTasks->tasks == NULL) {
+        fprintf(stderr, "Unable to allocate memory for TaskManager tasks\n");
+        return;
     }
-    manager->size--;
+
+    gProgramTasks->size = 0;
+    gProgramTasks->capacity = INITIAL_CAPACITY;
 }
 
-char* getTask(TaskManager* manager, int index) {
-    if (index < 0 || index >= manager->size) {
-        printf("Invalid index\n");
+void addTask(const char* desc) {
+    if (!isManagerInitialized()) {
+        fprintf(stderr, "TaskManager must be init before adding tasks");
+        return;
+    }
+
+    if (gProgramTasks->size >= gProgramTasks->capacity) {
+        // Double capacity
+        gProgramTasks->capacity *= 2;
+        gProgramTasks->tasks = (char**) realloc(gProgramTasks->tasks, gProgramTasks->capacity * sizeof(char*));
+    }
+
+    // Allocate memory for the new string and copy it
+    gProgramTasks->tasks[gProgramTasks->size] = (char*) malloc((strlen(desc) + 1) * sizeof(char));
+    strcpy(gProgramTasks->tasks[gProgramTasks->size], desc);
+    gProgramTasks->size++;
+}
+
+void deleteTask(int index) {
+    if (!isManagerInitialized()) {
+        fprintf(stderr, "TaskManager must be init before deleting tasks");
+        return;
+    }
+
+    if (index < 0 || index >= gProgramTasks->size) {
+        fprintf(stderr, "Invalid index\n");
+        return;
+    }
+
+    free(gProgramTasks->tasks[index]);
+    // Move the elements after deleted string one position forward
+    for (int i = index; i < gProgramTasks->size - 1; i++) {
+        gProgramTasks->tasks[i] = gProgramTasks->tasks[i + 1];
+    }
+    gProgramTasks->size--;
+}
+
+char* getTask(int index) {
+    if (!isManagerInitialized()) {
+        fprintf(stderr, "TaskManager must be init before adding tasks");
         return NULL;
     }
 
-    return manager->tasks[index];
-}
-
-void freeTaskManager(TaskManager* manager) {
-    for (int i = 0; i < manager->size; i++) {
-        free(manager->tasks[i]);
+    if (index < 0 || index >= gProgramTasks->size) {
+        fprintf(stderr, "Invalid index\n");
+        return NULL;
     }
 
-    free(manager->tasks);
-    free(manager);
+    return gProgramTasks->tasks[index];
+}
+
+void freeTaskManager() {
+    if (!isManagerInitialized()) {
+        return;
+    }
+
+    for (int i = 0; i < gProgramTasks->size; i++) {
+        free(gProgramTasks->tasks[i]);
+    }
+
+    free(gProgramTasks->tasks);
+    free(gProgramTasks);
+}
+
+static int isManagerInitialized() {
+    if (gProgramTasks->capacity > 0) {
+        return 1;
+    }
+
+    return 0;
 }

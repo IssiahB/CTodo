@@ -5,6 +5,6 @@ void saveTasks(TaskManager* manager) {
 
 }
 
-TaskManager* loadTasks() {
-    return initializeManager();
+void loadTasks() {
+    
 }

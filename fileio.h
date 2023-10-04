@@ -2,6 +2,6 @@
 #define FILEIO_H
 
 void saveTasks(TaskManager* manager);
-TaskManager* loadTasks();
+void loadTasks();
 
 #endif
