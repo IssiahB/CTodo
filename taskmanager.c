@@ -17,6 +17,7 @@ void initializeManager() {
         return;
     }
 
+    // Creates enough space in memory for 5 task pointers
     gProgramTasks->tasks = (char**) malloc(INITIAL_CAPACITY * sizeof(char*));
     if (gProgramTasks->tasks == NULL) {
         fprintf(stderr, "Unable to allocate memory for TaskManager tasks\n");
@@ -37,6 +38,10 @@ void addTask(const char* desc) {
         // Double capacity
         gProgramTasks->capacity *= 2;
         gProgramTasks->tasks = (char**) realloc(gProgramTasks->tasks, gProgramTasks->capacity * sizeof(char*));
+    }
+
+    if (desc[sizeof(desc) -1] != '\0') {
+        fprintf(stderr, "String is not terminated properly");
     }
 
     // Allocate memory for the new string and copy it
