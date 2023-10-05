@@ -7,9 +7,7 @@ A Todo list maker written in C. This is a CLI project that allows users to creat
 
 
 ## Requirements
-Create a /bin and /build folder in the projects root directory.
-
-Also [make](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows) needs to be installed to build the project.
+The only requirment is that [make](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows) needs to be installed to build the project.
 ## Installation
 
 Clone this project with Github CLI
