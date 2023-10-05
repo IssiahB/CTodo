@@ -1,10 +1,10 @@
-#include "taskmanager.h"
-#include "flowcontroller.h"
-#include "utils.h"
 #include <stdio.h>
 #include <string.h>
 
 #include "utils.h"
+#include "fileio.h"
+#include "taskmanager.h"
+#include "flowcontroller.h"
 
 /**
  * Simply checks the user input against the available
@@ -15,6 +15,8 @@ void controlFlow(char* command);
 
 int main() {
     initializeManager();
+    loadTasks();
+
     char* input;
     printf("\nCommands:\n  create - create a new task\n  list - list all tasks\n  delete - delete a task\n  quit - save tasks and exit\n");
     
@@ -25,6 +27,7 @@ int main() {
     } while (strcmp(input, "quit") != 0);
 
     printf("Exiting Program...");
+    saveTasks();
 
     freeTaskManager();
     freeInput(input);

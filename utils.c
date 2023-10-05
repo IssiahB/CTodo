@@ -10,7 +10,7 @@ char* getInput(char* prompt) {
 
     printf(prompt);
     fgets(input, 1024, stdin);
-    input[strcspn(input, "\n")] = '\0'; // Replace new line char with null terminator
+    input[strlen(input) - 1] = '\0'; // Replace new line char with null terminator
 
     return input;
 }
@@ -24,7 +24,7 @@ int parseInt(char* pInteger) {
     int length = 0;
     while (pInteger[length] != '\0') {
         if (!isdigit(pInteger[length])) {
-            fprintf(stderr, "Value given to parseInt must be an digit character\n");
+            fprintf(stderr, "Value given to parseInt must be a digit character\n");
             return -1;
         }
         length++;

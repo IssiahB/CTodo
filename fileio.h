@@ -1,7 +1,7 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
-void saveTasks(TaskManager* manager);
+void saveTasks();
 void loadTasks();
 
 #endif

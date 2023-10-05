@@ -40,10 +40,6 @@ void addTask(const char* desc) {
         gProgramTasks->tasks = (char**) realloc(gProgramTasks->tasks, gProgramTasks->capacity * sizeof(char*));
     }
 
-    if (desc[sizeof(desc) -1] != '\0') {
-        fprintf(stderr, "String is not terminated properly");
-    }
-
     // Allocate memory for the new string and copy it
     gProgramTasks->tasks[gProgramTasks->size] = (char*) malloc((strlen(desc) + 1) * sizeof(char));
     strcpy(gProgramTasks->tasks[gProgramTasks->size], desc);

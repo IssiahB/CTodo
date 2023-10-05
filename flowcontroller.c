@@ -16,13 +16,15 @@ void controlDeleteTask() {
         return;
     }
 
+    // List available tasks
     controlListTasks();
+    // Get user seleted index
     char* pIndex = getInput("Enter Task Index: ");
     int index = parseInt(pIndex);
     freeInput(pIndex);
 
-    printf("%d\n", index);
-
+    // Delete index from taskmanager
+    deleteTask(index);
 }
 
 void controlListTasks() {

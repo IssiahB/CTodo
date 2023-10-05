@@ -28,3 +28,6 @@ Thumbs.db
 
 # Ignore all files in the build/ directory
 build/
+
+# Program data
+taskdata.txt
