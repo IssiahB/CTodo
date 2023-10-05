@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "utils.h"
+
 /**
  * Simply checks the user input against the available
  * commands in the program, and then delegates the responsibility

@@ -16,4 +16,15 @@ char* getInput(char* prompt);
 */
 void freeInput(char* userinput);
 
+/**
+ * Parses a string to a positive integer and returns that
+ * integer. The Maximum number that can be parsed is:
+ * 999,999,999.
+ * 
+ * @param charInt the string to be parsed
+ * @returns The parsed integer if parsing was successful
+ *          otherwise returns -1.
+*/
+int parseInt(char* pInteger);
+
 #endif

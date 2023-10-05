@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 void controlCreateTask() {
-    printf("\nCreating Task...\n");
     char* desc = getInput("Enter Task Desc: ");
     
     addTask(desc);
@@ -12,21 +11,28 @@ void controlCreateTask() {
 }
 
 void controlDeleteTask() {
-    printf("Deleting...");
+    if (gProgramTasks->size < 1) {
+        printf("\nNo Tasks To Delete!\n");
+        return;
+    }
+
+    controlListTasks();
+    char* pIndex = getInput("Enter Task Index: ");
+    int index = parseInt(pIndex);
+    freeInput(pIndex);
+
+    printf("%d\n", index);
+
 }
 
 void controlListTasks() {
     if (gProgramTasks->size < 1) {
-        printf("\nNo Tasks!\n");
+        printf("\nNo Tasks To List!\n");
         return;
     }
 
-    // TODO when listing tasks only 7 characters are displayed figure out error
-
-    printf("\nListing...\n");
     for (int i = 0; i < gProgramTasks->size; i++) {
         char* task = getTask(i);
         printf("\t%d - %s\n", i, task);
     }
-
 }
