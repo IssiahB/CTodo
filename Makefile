@@ -1,14 +1,20 @@
 CC = gcc
-CFLAGS = -Wall -g
-SRC = main.c taskmanager.c utils.c flowcontroller.c fileio.c
-OBJ = $(SRC:.c=.o)
-EXECUTABLE = main.exe
+CFLAGS = -Iinclude
+LDFLAGS = 
 
-$(EXECUTABLE): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+TARGET = bin/main.exe
 
-%.o: %.c
+SRCS = $(wildcard src/*.c)
+
+OBJS = $(patsubst src/%.c, build/%.o, $(SRCS))
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+build/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f build/*.o $(TARGET)

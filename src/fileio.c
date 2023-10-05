@@ -5,7 +5,7 @@
 #include "taskmanager.h"
 
 void saveTasks() {
-    FILE* file = fopen("taskdata.txt", "w");
+    FILE* file = fopen("data/taskdata.txt", "w");
     if (file == NULL) {
         fprintf(stderr, "Unable to save tasks");
         return;
@@ -34,7 +34,7 @@ void saveTasks() {
 }
 
 void loadTasks() {
-    FILE* file = fopen("taskdata.txt", "r");
+    FILE* file = fopen("data/taskdata.txt", "r");
     if (file == NULL) {
         return; // No need to inform user will create file at end of program
     }
